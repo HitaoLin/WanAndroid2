@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/project_list"
+    android:layout_margin="@dimen/dp_5">
+
+    <!--<ImageView-->
+        <!--android:id="@+id/ivAvatar"-->
+        <!--android:layout_width="@dimen/dp_90"-->
+        <!--android:layout_height="@dimen/dp_170"-->
+        <!--android:background="@mipmap/iv_classify" />-->
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="@dimen/dp_170"
+        android:background="@mipmap/default_project_img"
+        fresco:roundedCornerRadius="0dp"
+        android:layout_margin="@dimen/dp_5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_20">
+
+        <TextView
+            android:id="@+id/tvCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="分类名称"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_12" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_weight="1"
+            android:maxLines="5"
+            android:text="描述"
+            android:ellipsize="end"
+            android:textSize="@dimen/dp_10" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_3"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:text="作者"
+                android:textSize="@dimen/dp_10" />
+
+            <ImageView
+                android:id="@+id/item_home_love"
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:background="@drawable/selector_home_love" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

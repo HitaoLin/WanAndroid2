@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="calendar_top_bg">#F5A0B3</color>
+    <color name="transparent1">#808080</color>
+    <color name="gary">#808080</color>
+    <color name="top_bg">#00000000</color>
+    <color name="bottom_bg">#000000</color>
+    <color name="center_bg">#f5f5f5</color>
+    <color name="text_purple_color">#8337b3</color>
+    <color name="text_gary_color">#808080</color>
+    <color name="text_dark_color">#3B3B3B</color>
+    <color name="text_white_color">#FFFFFF</color>
+    <color name="text_red_color">#FF0000</color>
+    <color name="category_one_item_layout_color">#f2f2f2</color>
+    <color name="popu_dim_color">#8c000000</color>
+    <color name="line_color" >#d9d9d9</color>
+    <color name="gary_text">#999999</color>
+    <color name="fen_text">#ee3f5b</color>
+    <color name="orange_text">#FF561F</color>
+    <color name="view">#E9E8E8</color>
+
+    <!--floating button action-->
+    <color name="material_blue_500">#5677fc</color>
+
+
+    <color name="bottom_text_color_select">#ff0000</color>
+    <color name="bottom_text_color_normal">#ffffff</color>
+    <color name="backgourd_layout_dark_color">#fafafa</color>
+    <color name="order_address_bg">#fff9f2</color>
+    <color name="home_color">#999999</color>
+
+    <!--zxing-->
+    <color name="bg_color">#EDEDED</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="header">#58567D</color>
+    <color name="grgray">#686868</color>
+
+
+    <!-- 优惠券item使用的颜色 -->
+    <color name="wks_bg">#7cc7ea</color>
+    <color name="ysy_bg">#f2c775</color>
+    <color name="wsy_bg">#f498af</color>
+    <color name="ygq_bg">#b9b9b9</color>
+
+
+    <!-- 洋李色 -->
+    <color name="gainsboro">#dcdcdc</color>
+
+    <color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+
+    <color name="green">#FF34A350</color>
+
+    <color name="fen">#ee3f5b</color>
+
+    <color name="main_color">#FF1C81D1</color>
+    <color name="btn_off">#DDDDDD</color>
+    <color name="white_bg">#FFF1F1F1</color>
+
+    <color name="colorGray">#dbdbdb</color>
+
+    <color name="bar_white">#FFF1F1F1</color>
+
+    <color name="white">#ffffff</color>
+    <color name="whiteAlways">#fff</color>
+    <color name="black">#000000</color>
+    <color name="textColor">#000</color>
+    <color name="background">#fafafa</color>
+    <color name="colorWanStyle">#01d2fb</color>
+    <color name="colorNavNormal">#707070</color>
+    <color name="bottomNavBackground">#f9f7f7</color>\
+
+    <color name="white_short">#e4e4e4</color>
+    <color name="black_trans">#5c000000</color>
+    <color name="gray">#e2e2e2</color>
+    <color name="transparency">#00000000</color>
+
+    //person
+    <color name="yellow">#FFC66D</color>
+    <color name="shadow">#7f8c8d</color>
+    <color name="text_hint">#a8ffffff</color>
+    <color name="line">#a8ffffff</color>
+    <color name="diver">#e2e2e2</color>
+
+
+    //setting
+    <color name="type_setting">#EE5656</color>
+    <color name="setting_line">#5C222121</color>
+    <color name="type_other">#00695C</color>
+
+
+</resources>

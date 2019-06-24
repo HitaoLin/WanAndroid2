@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <!--<q.rorbin.verticaltablayout.VerticalTabLayout-->
+        <!--android:id="@+id/tablayout2"-->
+        <!--android:layout_width="110dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#EDEDED"-->
+        <!--android:paddingLeft="10dp"-->
+        <!--android:paddingRight="10dp"-->
+        <!--android:visibility="visible"-->
+        <!--app:indicator_color="#369DE3"-->
+        <!--app:indicator_corners="20dp"-->
+        <!--app:indicator_gravity="fill"-->
+        <!--app:tab_margin="10dp"-->
+        <!--app:tab_mode="scrollable" />-->
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#EDEDED"
+            app:indicator_color="#FFFFFF"
+            app:indicator_gravity="fill"
+            app:tab_height="56dp"
+            app:tab_mode="scrollable" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:padding="3dp"
+                    android:src="@mipmap/laba" />
+
+                <com.superluo.textbannerlibrary.TextBannerView
+                    android:id="@+id/tv_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    app:setAnimDuration="1000"
+                    app:setDirection="bottom_to_top"
+                    app:setGravity="left"
+                    app:setTextColor="@color/main_color"
+                    app:setTextSize="@dimen/sp_12" />
+
+                <!-- android:background="#cc8ac6"-->
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:background="@mipmap/bg_list"
+                android:visibility="gone" />
+
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.scwang.smartrefresh.header.PhoenixHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linear_no_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/icon_no_data" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="暂无数据~"
+                            android:textColor="#BDBDBD"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

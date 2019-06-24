@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:padding="3dp"
+            android:src="@mipmap/laba" />
+
+        <com.superluo.textbannerlibrary.TextBannerView
+            android:id="@+id/tv_banner"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            app:setDirection="bottom_to_top"
+            app:setTextSize="@dimen/sp_12"
+            app:setGravity="left"
+            app:setTextColor="@color/main_color"
+            app:setAnimDuration="1000"/>
+
+        <!-- android:background="#cc8ac6"-->
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/tablayout2"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:background="#EDEDED"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:indicator_color="#369DE3"
+            app:indicator_corners="20dp"
+            app:indicator_gravity="fill"
+            app:tab_margin="10dp"
+            android:visibility="visible"
+            app:tab_mode="scrollable" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
