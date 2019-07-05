@@ -56,7 +56,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".greendao.MyApplication">
         <activity android:name=".activity.EveryToolActivity"></activity>
         <activity android:name=".activity.ToolActivity" />
         <activity android:name=".activity.LoginActivity" />

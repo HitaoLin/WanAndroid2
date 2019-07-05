@@ -89,6 +89,7 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
     private LinerRecycleAdapter2 adapter;
 
     List<ProjectListDatasBean> list = new ArrayList<>();
+    List<Integer> listList = new ArrayList<>();
 
 
     ProjectClassificationPresenter projectClassificationPresenter;//项目分类
@@ -97,6 +98,16 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
     List<String> classifiationList = new ArrayList<>();
 
     ProjectListPresenter projectListPresenter;//项目列表数据
+
+    String title;//标题
+    String link;//连接
+    List<String> titleList = new ArrayList<>();
+    List<String> linkList = new ArrayList<>();
+
+    private String id;
+    List<String> idList = new ArrayList<>();
+    String judgeId;//判断id
+    String originalId;//原来id
 
     IosLoadDialog dialog;
 
@@ -147,6 +158,7 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
 
                 pos = position;
                 Log.e("position", position + "" + "..............id:" + projectClassificationDatasList.get(pos).getId());
+                originalId = projectClassificationDatasList.get(pos).getId();
                 projectListPresenter.loadProjectList(getContext(), String.valueOf(page), projectClassificationDatasList.get(pos).getId());
                 adapter.notifyDataSetChanged();
             }
@@ -235,10 +247,17 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
                 classifiation = model.getData().get(i).getName();
                 classifiationList.add(classifiation);
 
+                id = projectClassificationDatasList.get(i).getId();
+                idList.add(id);
+
+
                 tabLayout.addTab(new QTabView(getContext()).setTitle(
                         new QTabView.TabTitle.Builder().setContent(classifiation).build()));
 
             }
+
+            judgeId = idList.get(0);
+            originalId = projectClassificationDatasList.get(pos).getId();
 
             projectListPresenter.loadProjectList(getContext(), String.valueOf(page), projectClassificationDatasList.get(pos).getId());
 
@@ -255,7 +274,29 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
     public void getProjectListData(ProjectListModel model) {
         if (model.getErrorCode().equals("0")) {
 
+
             list = model.getData().getDatas();
+
+            if (judgeId != originalId) {
+                titleList.clear();
+                linkList.clear();
+                /**
+                 * 如果id不同，得重新赋值
+                 */
+                judgeId = originalId;
+            }
+
+
+            for (int i = 0; i < list.size(); i++) {
+                title = model.getData().getDatas().get(i).getTitle();
+                link = model.getData().getDatas().get(i).getLink();
+
+                titleList.add(title);
+                linkList.add(link);
+
+                listList.add(i);
+
+            }
 
             if (list.size() < 0) {
 
@@ -273,9 +314,6 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
 ////            adapter = new GridRecycleAdapter(getContext());
 ////            tvName.setText(list.get(0).getName());
 //            recyclerView.setAdapter(adapter);
-
-
-
 
 
 //            iv.setOnClickListener(new View.OnClickListener() {
@@ -343,6 +381,7 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
 
         switch (state) {
             case STATE_NORMAL:
+
                 adapter = new LinerRecycleAdapter2(list);
                 //Recyclerview添加头部布局
 //                rvHomeAdapter.setHeaderView(viewHeader);
@@ -357,13 +396,14 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
                 //没有数据时显示图片--暂无数据
                 if (adapter == null || adapter.getItemCount() == 0) {
                     linear_no_income.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     linear_no_income.setVisibility(View.GONE);
                 }
 
                 break;
 
             case STATE_REFRESH:
+
                 if (adapter != null)
                     adapter.clearData();
                 adapter.addData(list);
@@ -379,7 +419,7 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
                 //没有数据时显示图片--暂无数据
                 if (adapter == null || adapter.getItemCount() == 0) {
                     linear_no_income.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     linear_no_income.setVisibility(View.GONE);
                 }
 
@@ -394,7 +434,7 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
                 //没有数据时显示图片--暂无数据
                 if (adapter == null || adapter.getItemCount() == 0) {
                     linear_no_income.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     linear_no_income.setVisibility(View.GONE);
                 }
 
@@ -417,13 +457,15 @@ public class ProjectFragment4 extends Fragment implements ProjectClassificationV
 
 
                 default:
+                    Log.e("pos", position + ".........page:" + page);
                     Intent intent = new Intent(getContext(), BannerActivity.class);
-//                    intent.putExtra("url",linkList.get(position));
-//                    intent.putExtra("title",titleList.get(position));
+                    Log.e("linkList", linkList.size() + "");
+                    intent.putExtra("url", linkList.get(position));
+                    intent.putExtra("title", titleList.get(position));
                     startActivity(intent);
                     break;
             }
-            Log.e("click",position+"");
+            Log.e("click", position + "");
         }
 
         @Override

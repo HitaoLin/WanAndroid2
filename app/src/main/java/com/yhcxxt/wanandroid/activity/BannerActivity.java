@@ -20,6 +20,7 @@ import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 import com.yhcxxt.wanandroid.views.IosLoadDialog;
 import com.yhcxxt.wanandroid.views.LoadListenerWebView;
 import com.yhcxxt.wanandroid.views.LoadWebView;
+
 /**
  * <pre>
  *      author:LHT
@@ -145,7 +146,13 @@ public class BannerActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_share:
-                Toast.makeText(this, "敬请期待！", Toast.LENGTH_SHORT).show();
+                //调用系统自带分享
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "标题：" + title + "\n" + url);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+//                Toast.makeText(this, "敬请期待！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_collect:
                 Toast.makeText(this, "敬请期待！", Toast.LENGTH_SHORT).show();

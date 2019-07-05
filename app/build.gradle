@@ -1,6 +1,5 @@
-//apply plugin: 'com.android.application'
 apply plugin: 'com.android.application'
-//apply plugin: 'org.greenrobot.greendao' // apply plugin
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -22,6 +21,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+greendao {
+    schemaVersion 1  //版本
+//    daoPackage 'com.example.greendaodemo.dao.dao' // 一般为app包名+生成文件的文件夹名,例com.example.greendao.dao
+//    targetGenDir 'src/main/java' //生成文件路径
+
 }
 
 dependencies {
@@ -51,7 +57,8 @@ dependencies {
     //流式布局FlowLayout
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     //greendao
-//    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
     //图片选择
     implementation 'com.github.wildma:PictureSelector:1.1.2'
     //登陆动态圆点

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/titlebar" />
+
     <!--<com.youth.banner.Banner-->
         <!--android:id="@+id/banner"-->
         <!--android:layout_width="match_parent"-->

@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yhcxxt.wanandroid.R;
+import com.yhcxxt.wanandroid.adapter.BaseRecycleAdapter;
+import com.yhcxxt.wanandroid.adapter.RvSearchAdapter;
+import com.yhcxxt.wanandroid.adapter.RvSearchHistoryAdapter;
+import com.yhcxxt.wanandroid.adapter.SeachRecordAdapter;
+import com.yhcxxt.wanandroid.db.DbDao;
+import com.yhcxxt.wanandroid.greendao.GreendaoManager;
+import com.yhcxxt.wanandroid.greendao.MyApplication;
+import com.yhcxxt.wanandroid.greendao.SearchHistory;
+import com.yhcxxt.wanandroid.greendao.SearchHistoryDao;
 import com.yhcxxt.wanandroid.model.SearchHotWordsDatas;
 import com.yhcxxt.wanandroid.model.SearchHotWordsModel;
 import com.yhcxxt.wanandroid.model.SearchModel;
@@ -40,18 +52,25 @@ import java.util.Random;
  *      desc:搜索 Activity
  * </pre>
  */
-public class SerachActivity extends BaseActivity implements View.OnClickListener, SearchHotWordsView{
+public class SerachActivity extends BaseActivity implements View.OnClickListener, SearchHotWordsView {
 
     private RelativeLayout searchRelative;
     private ImageView backIv;
-    private EditText searchEdit;
+    private EditText searchEdit;//搜索输入框
     private ImageView searchIv;
-    private TextView searchTv;
+    private TextView searchTv;//搜索
     private NestedScrollView searchScrollView;
     private TagFlowLayout searchHotFlowLayout;
-    private ImageView searchClearAllIv;
+    private ImageView searchClearAllIv;//删除所有记录
     private TextView searchHistoryEmptyTv;
     private RecyclerView searchHistoryRecycler;
+
+    RvSearchHistoryAdapter rvSearchHistoryAdapter;
+    List<SearchHistory> searchHistoryList;
+    String searchHistoryDate;
+    List<SearchHistory> searchHistoryDateList = new ArrayList<>();
+    SearchHistory searchHistory;
+
 
     private String searchEditText;//搜索内容
 
@@ -61,6 +80,17 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
     private String name;//搜索热词
     private List<String> nameList = new ArrayList<>();
 
+    private SearchHistoryDao searchHistoryDao;
+    private long id = 0L;
+    long i = 0;
+    Long userId = null;
+    private GreendaoManager<SearchHistory, SearchHistoryDao> greendaoManager;
+
+    View view;
+
+
+    private SeachRecordAdapter mAdapter;
+    private DbDao mDbDao;
 
 
     private int mColor;
@@ -81,10 +111,31 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serach);
 
+        view = View.inflate(this, R.layout.activity_serach, null);
+
+        mDbDao = new DbDao(this);
+
+        searchHistoryDao = MyApplication.getInstances().getDaoSession().getSearchHistoryDao();
+        //得到该Dao对象的管理器（如果你本地就一张表,GreendaoManager可以写成单例,通过构造方法传参，如果多张表不建议写成单例）
+        greendaoManager = new GreendaoManager<>(searchHistoryDao);
 
         searchHotWordsPresenter = new SearchHotWordsPresenter(this);
         initView();
         searchHotWordsPresenter.loadProjectList(this);
+
+
+        searchHistoryRecycler = (RecyclerView) findViewById(R.id.searchHistoryRecycler);
+        searchHistoryRecycler.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter = new SeachRecordAdapter(mDbDao.queryData(""), this);
+        mAdapter.setRvItemOnclickListener(new BaseRecycleAdapter.RvItemOnclickListener() {
+            @Override
+            public void RvItemOnclick(int position) {
+                mDbDao.delete(mDbDao.queryData("").get(position));
+
+                mAdapter.updata(mDbDao.queryData(""));
+            }
+        });
+        searchHistoryRecycler.setAdapter(mAdapter);
 
 
     }
@@ -102,38 +153,109 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
         searchHistoryEmptyTv = (TextView) findViewById(R.id.searchHistoryEmptyTv);
         searchHistoryRecycler = (RecyclerView) findViewById(R.id.searchHistoryRecycler);
 
+        ((SimpleItemAnimator) searchHistoryRecycler.getItemAnimator()).setSupportsChangeAnimations(false);
+
         backIv.setOnClickListener(this);
         searchTv.setOnClickListener(this);
+        searchClearAllIv.setOnClickListener(this);
+
+        //搜索历史
+        initSearchHistory();
 
 
+    }
 
+    /**
+     * date:20190704
+     * desc:搜索历史
+     */
+    private void initSearchHistory() {
 
-
+//
+//        searchHistoryList = searchHistoryDao.loadAll();
+//        String userName = "";
+//        for (int i = 0; i < searchHistoryList.size(); i++) {
+//            userName = searchHistoryList.get(i).getName();
+//            userId = searchHistoryList.get(i).getId();
+//
+//            SearchHistory searchHistory = new SearchHistory(userId, userName);
+//            searchHistoryDateList.add(searchHistory);
+//
+//        }
+//
+//
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        searchHistoryRecycler.setLayoutManager(linearLayoutManager);
+//        rvSearchHistoryAdapter = new RvSearchHistoryAdapter(searchHistoryDateList);
+//        searchHistoryRecycler.setAdapter(rvSearchHistoryAdapter);
+//        searchHistoryRecycler.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.backIv://返回
                 finish();
                 break;
             case R.id.searchTv://搜索
+
+//                if (id == 0){
+//                    if (userId == null){
+//                        id++;
+//                    }else {
+//                        id = userId +1;
+//                    }
+//                }else {
+//                    id++;
+//                }
+//
+//
                 searchEditText = searchEdit.getText().toString().trim();
-                if (searchEditText.isEmpty()){
-                    Utils.showToast(this,"请正确输入！");
-                }else {
-                    Intent intent = new Intent(this,SearchResultActivity.class);
-                    intent.putExtra("content",searchEditText);
+//
+////                SearchHistory searchHistory = new SearchHistory(id,searchEditText);
+////                this.greendaoManager.insertOrReplace(searchHistory);
+//                searchHistory = new SearchHistory(id, searchEditText);
+//                searchHistoryDao.insert(searchHistory);
+
+
+                if (searchEditText.isEmpty()) {
+                    Utils.showToast(this, "请输入内容！");
+                } else {
+                    Intent intent = new Intent(this, SearchResultActivity.class);
+                    intent.putExtra("content", searchEditText);
                     startActivity(intent);
                 }
 
+                if (searchEdit.getText().toString().trim().length() != 0) {
+                    boolean hasData = mDbDao.hasData(searchEdit.getText().toString().trim());
+                    if (!hasData) {
+                        mDbDao.insertData(searchEdit.getText().toString().trim());
+                    } else {
+//                        Toast.makeText(this, "该内容已在历史记录中", Toast.LENGTH_SHORT).show();
+                    }
+
+                    //
+                    mAdapter.updata(mDbDao.queryData(""));
+
+                } else {
+//                    Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
+                }
+
+
+                break;
+
+            case R.id.searchClearAllIv://删除所有搜索纪录
+//                searchHistoryDao.deleteAll();
+                mDbDao.deleteData();
+                mAdapter.updata(mDbDao.queryData(""));
                 break;
         }
     }
 
     /**
      * 搜索热词
+     *
      * @param model
      */
     @Override
@@ -141,11 +263,11 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
 
         searchHotWordsDatasList = model.getData();
 
-        for (int i = 0;i<searchHotWordsDatasList.size();i++){
+        for (int i = 0; i < searchHotWordsDatasList.size(); i++) {
 
             name = searchHotWordsDatasList.get(i).getName();
             nameList.add(name);
-            Log.e("name",name);
+            Log.e("name", name);
         }
 
         searchHotFlowLayout.setAdapter(new TagAdapter<String>(nameList) {
@@ -171,6 +293,17 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
 
+                //添加到历史纪录
+                boolean hasData = mDbDao.hasData(searchHotWordsDatasList.get(position).getName());
+                if (!hasData) {
+                    mDbDao.insertData(searchHotWordsDatasList.get(position).getName());
+                } else {
+//                        Toast.makeText(this, "该内容已在历史记录中", Toast.LENGTH_SHORT).show();
+                }
+
+                mAdapter.updata(mDbDao.queryData(""));
+
+
                 Intent intent = new Intent(parent.getContext(), SearchResultActivity.class);
                 intent.putExtra("content", searchHotWordsDatasList.get(position).getName());
                 parent.getContext().startActivity(intent);
@@ -180,5 +313,15 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+//                initSearchHistory();
+            }
+        });
 
+    }
 }

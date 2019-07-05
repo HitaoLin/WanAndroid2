@@ -101,9 +101,10 @@
                     android:id="@+id/searchClearAllIv"
                     android:layout_width="@dimen/dp_20"
                     android:layout_height="@dimen/dp_20"
+                    android:layout_alignBottom="@id/searchClearAllIv"
                     android:layout_alignParentRight="true"
-                    android:src="@mipmap/ic_search_clear"
-                    />
+                    android:layout_marginBottom="0dp"
+                    android:src="@mipmap/ic_search_clear" />
 
                 <TextView
                     android:layout_width="wrap_content"
