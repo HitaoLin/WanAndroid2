@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
@@ -18,7 +20,10 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -40,6 +45,7 @@ import com.yhcxxt.wanandroid.model.BannerModel;
 import com.yhcxxt.wanandroid.presenter.ArticlePresenter;
 import com.yhcxxt.wanandroid.presenter.BannerPresenter;
 import com.yhcxxt.wanandroid.utils.MyImageLoder;
+import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 import com.yhcxxt.wanandroid.view.ArticleView;
 import com.yhcxxt.wanandroid.view.BannerView;
 import com.yhcxxt.wanandroid.views.IosLoadDialog;
@@ -59,6 +65,9 @@ import java.util.List;
  * </pre>
  */
 public class HomeFragment extends Fragment implements BannerView, OnBannerListener, ArticleView {
+
+    FrameLayout framelayout;
+    NestedScrollView scrollview;
 
     private EditText et_search;//搜索框
 
@@ -107,16 +116,29 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
         mActivity = (Activity) context;
     }
 
+    private int mColor;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        mColor = getResources().getColor(R.color.wks_bg);
+        StatusBarUtil.setColor(this.getActivity(), mColor, 0);
+        if (mColor == getResources().getColor(R.color.white)) {
+            this.getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//黑色
+        } else {
+            this.getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);//白色
+        }
+
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         dialog = new IosLoadDialog(this.getContext());
         dialog.show();
 
+        scrollview = view.findViewById(R.id.scrollview);
+        framelayout = view.findViewById(R.id.framelayout);
 //        banner = view.findViewById(R.id.banner);
         refreshLayout = view.findViewById(R.id.refreshLayout);
         et_search = view.findViewById(R.id.et_search);
@@ -129,7 +151,39 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
         initRefreshLayout();
 
         articlePresenter.loadArticle(this.getContext(), String.valueOf(page));
+
+        initTitleEvent();
+
         return view;
+    }
+
+    private void initTitleEvent() {
+
+        framelayout.setBackgroundColor(Color.argb(0, 124, 199, 234));
+        scrollview.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+
+                int scrollY = scrollview.getScrollY();
+//                Log.e("scrollY",scrollY+"");
+                if (scrollY <= 0) {
+                    framelayout.setBackgroundColor(Color.argb(0, 124, 199, 234));
+                } else if (scrollY > 0 && scrollY <= 255) {
+
+                    float scale = (float) scrollY / 255;
+                    float alpha = (float) 255 * scale;
+                    framelayout.setBackgroundColor(Color.argb((int) alpha, 124, 199, 234));
+                } else if (scrollY > 255) {
+                    /**
+                     * alpha 范围是0-255
+                     */
+//                    framelayout.setBackgroundColor(getResources().getColor(R.color.white));
+                    framelayout.setBackgroundColor(Color.argb(255, 124, 199, 234));
+                }
+
+            }
+        });
+
     }
 
     private void initEvent() {
@@ -213,6 +267,7 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
 
     /**
      * Banner 数据
+     *
      * @param model
      */
     @Override
@@ -267,8 +322,8 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
                 break;
 
             case STATE_MORE:
-                rvHomeAdapter.addData(rvHomeAdapter.getDatas().size()+1, articleDatas);
-                recyclerView.scrollToPosition(rvHomeAdapter.getDatas().size()+1);
+                rvHomeAdapter.addData(rvHomeAdapter.getDatas().size() + 1, articleDatas);
+                recyclerView.scrollToPosition(rvHomeAdapter.getDatas().size() + 1);
                 refreshLayout.finishLoadMore();
                 break;
 
@@ -284,8 +339,8 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
 //        Intent intentAbout = new Intent(Intent.ACTION_VIEW, uri);
 //        startActivity(intentAbout);
         Intent intent = new Intent(this.getContext(), BannerActivity.class);
-        intent.putExtra("url",bannerUrlList.get(position));
-        intent.putExtra("title",imageTitleList.get(position));
+        intent.putExtra("url", bannerUrlList.get(position));
+        intent.putExtra("title", imageTitleList.get(position));
         startActivity(intent);
     }
 
@@ -300,9 +355,9 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
 
 
                 default:
-                    Intent intent = new Intent(getContext(),BannerActivity.class);
-                    intent.putExtra("url",linkList.get(position-1));
-                    intent.putExtra("title",titleList.get(position-1));
+                    Intent intent = new Intent(getContext(), BannerActivity.class);
+                    intent.putExtra("url", linkList.get(position - 1));
+                    intent.putExtra("title", titleList.get(position - 1));
                     startActivity(intent);
                     break;
             }
@@ -316,6 +371,7 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
 
     /**
      * 首页文章列表
+     *
      * @param model
      */
     @Override
@@ -330,10 +386,10 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
             linkList.add(link);
 
         }
-        if (articleDatas.size()<0){
+        if (articleDatas.size() < 0) {
 
-        }else
-        showData();
+        } else
+            showData();
 
         getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -347,10 +403,10 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
 
     private void toSearchActivity() {
         Intent intent = new Intent(getContext(), SerachActivity.class);
-       //.makeSceneTransitionAnimation  至少为 minSdkVersion 21
+        //.makeSceneTransitionAnimation  至少为 minSdkVersion 21
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(mActivity,
                 Pair.create(et_search, getString(R.string.share_edit))//,
-               // Pair.create(et_search, getString(R.string.share_image))
+                // Pair.create(et_search, getString(R.string.share_image))
         );
         startActivity(intent, options.toBundle());
     }
