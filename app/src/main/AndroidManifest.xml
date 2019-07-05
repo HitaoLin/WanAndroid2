@@ -51,14 +51,15 @@
         android:required="false" />
 
     <application
+        android:name=".greendao.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".greendao.MyApplication">
-        <activity android:name=".activity.EveryToolActivity"></activity>
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.AboutUsActivity"></activity>
+        <activity android:name=".activity.EveryToolActivity" />
         <activity android:name=".activity.ToolActivity" />
         <activity android:name=".activity.LoginActivity" />
         <!--

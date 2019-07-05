@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.wildma.pictureselector.ImageUtils;
 import com.wildma.pictureselector.PictureSelector;
 import com.yhcxxt.wanandroid.R;
+import com.yhcxxt.wanandroid.activity.AboutUsActivity;
 import com.yhcxxt.wanandroid.activity.LoginActivity;
 import com.yhcxxt.wanandroid.activity.MainActivity;
 import com.yhcxxt.wanandroid.activity.ToolActivity;
@@ -208,7 +209,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
 
             case R.id.linear_about://关于我们
-
+                startActivity(new Intent(getContext(), AboutUsActivity.class));
                 break;
 
             case R.id.linear_log_out://退出登录

@@ -18,5 +18,34 @@
     <string name="search_history_empty">快来搜索干货吧@_@!</string>
     <string name="search_empty">暂无数据，换个关键字查询吧@_@!</string>
 
+    <string name="about_us_text"> <![CDATA[
+        <h2>玩Android</h2>
+        <p>\t\t\t\t本APP使用的API接口均由鸿洋大神的网站提供。</p>
+        <p>\t\t\t\t<a href="https://www.wanandroid.com/blog/show/2" target="_blank">https://www.wanandroid.com</a></p>
+        <p>\t\t\t\t本APP使用到的第三方框架有：</p>
+        <p>\t\t\t\tokhttp3 <a href="https://github.com/square/okhttp" target="_blank">https://github.com/square/okhttp</a></p>
+        <p>\t\t\t\tGson <a href="https://github.com/google/gson" target="_blank">https://github.com/google/gson</a></p>
+        <p>\t\t\t\tsmartrefresh <a href="https://github.com/scwang90/SmartRefreshLayout" target="_blank">https://github.com/scwang90/SmartRefreshLayout</a></p>
+        <p>\t\t\t\tbanner <a href="https://github.com/youth5201314/banner" target="_blank">https://github.com/youth5201314/banner</a></p>
+        <p>\t\t\t\tbutterknife <a href="https://github.com/JakeWharton/butterknife" target="_blank">https://github.com/JakeWharton/butterknife</a></p>
+        <p>\t\t\t\t广告条  textbannerview <a href="https://github.com/ChessLuo/TextBannerView" target="_blank">https://github.com/ChessLuo/TextBannerView</a></p>
+        <p>\t\t\t\t流式布局FlowLayout <a href="https://github.com/hongyangAndroid/FlowLayout" target="_blank">https://github.com/hongyangAndroid/FlowLayout</a></p>
+        <p>\t\t\t\t图片选择 PictureSelector<a href="https://github.com/LuckSiege/PictureSelector" target="_blank">https://github.com/LuckSiege/PictureSelector</a></p>
+        <p>\t\t\t\t动态圆点 Grav <a href="https://github.com/glomadrian/Grav" target="_blank">https://github.com/glomadrian/Grav</a></p>
+        <p>\t\t\t\tVerticalTabLayout <a href="https://github.com/qstumn/VerticalTabLayout" target="_blank">https://github.com/qstumn/VerticalTabLayout</a></p>
+        <p>\t\t\t\t动态圆点 Grav <a href="https://github.com/glomadrian/Grav" target="_blank">https://github.com/glomadrian/Grav</a></p>
+        <p>\t\t\t\tfresco <a href="https://github.com/facebook/fresco" target="_blank">https://github.com/facebook/fresco</a></p>
+
+        <!--<p>\t\t\t\t如果您有任何好的建议：</p>-->
+        <!--\t\t\t\t\t关于网站排版-->
+        <!--<br/>\t\t\t\t\t关于新增常用网址以及工具-->
+        <!--<br/>\t\t\t\t\t未来你希望增加的功能等-->
+        <!--<p>\t\t\t\t可以在<a href="https://github.com/hongyangAndroid/wanandroid" target="_blank">https://github.com/hongyangAndroid/xueandroid</a>项目中以issue的形式提出，我将及时跟进。</p>-->
+        <!--<p>\t\t\t\t如果您希望长期关注本站，可以加入我们的QQ群：<b>591683946</b></p>-->
+        <!--<h2>源码位置</h2>-->
+        <!--<p>\t\t\t\t本软件开源，如果你发现任何错误，不要犹豫，马上点击<a href="https://github.com/jsyjst/Yuan-WanAndroid" target="_blank">GitHub</a>，在上面发起<b>issue</b>或者提交<b>pull request</b>。</p>-->
+        <!--<h2>更新日记</h2>-->
+        <!--<p>\t\t\t\t想了解更多更新详情，请点击<a href="https://github.com/jsyjst/Yuan-WanAndroid/releases" target="_blank">Here</a></p>-->
+        ]]></string>
 
 </resources>

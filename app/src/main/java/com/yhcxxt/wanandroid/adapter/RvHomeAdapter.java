@@ -163,6 +163,5 @@ public class RvHomeAdapter extends RecyclerView.Adapter<RvHomeAdapter.ViewHolder
             }
         }
 
-
     }
 }

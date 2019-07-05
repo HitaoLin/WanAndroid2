@@ -82,4 +82,10 @@
     </style>
 
 
+    <!--toolbar弹出菜单的风格-->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="overlapAnchor">false</item>
+    </style>
+
+
 </resources>
