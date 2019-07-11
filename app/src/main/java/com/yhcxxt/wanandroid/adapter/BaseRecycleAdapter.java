@@ -247,13 +247,32 @@ public  abstract  class BaseRecycleAdapter  <T> extends RecyclerView.Adapter<Bas
         mRvItemOnclickListener = rvItemOnclickListener;
     }
 
-    protected     RvItemOnclickListener mRvItemOnclickListener;
+    protected   RvItemOnclickListener mRvItemOnclickListener;
 
 
     public interface  RvItemOnclickListener{
 
         void RvItemOnclick(int position);
     }
+
+    //item
+    public ItemOnclickListener getOnclickListener() {
+        return mItemOnclickListener;
+    }
+
+    public void setItemOnclickListener(ItemOnclickListener itemOnclickListener) {
+        mItemOnclickListener = itemOnclickListener;
+    }
+
+    protected ItemOnclickListener mItemOnclickListener;
+
+
+    public interface  ItemOnclickListener{
+
+        void ItemOnclick(int position);
+    }
+
+
 
 
 

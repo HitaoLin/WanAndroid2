@@ -65,6 +65,8 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
     private TextView searchHistoryEmptyTv;
     private RecyclerView searchHistoryRecycler;
 
+    SeachRecordAdapter seachRecordAdapter;
+
     RvSearchHistoryAdapter rvSearchHistoryAdapter;
     List<SearchHistory> searchHistoryList;
     String searchHistoryDate;
@@ -127,15 +129,31 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
         searchHistoryRecycler = (RecyclerView) findViewById(R.id.searchHistoryRecycler);
         searchHistoryRecycler.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new SeachRecordAdapter(mDbDao.queryData(""), this);
+
         mAdapter.setRvItemOnclickListener(new BaseRecycleAdapter.RvItemOnclickListener() {
             @Override
             public void RvItemOnclick(int position) {
                 mDbDao.delete(mDbDao.queryData("").get(position));
 
                 mAdapter.updata(mDbDao.queryData(""));
+
+
             }
         });
         searchHistoryRecycler.setAdapter(mAdapter);
+
+        //item 点击事件
+        mAdapter.setItemOnclickListener(new BaseRecycleAdapter.ItemOnclickListener() {
+            @Override
+            public void ItemOnclick(int position) {
+
+//                Toast.makeText(mContext, position+":"+ mDbDao.queryData("").get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SerachActivity.this, SearchResultActivity.class);
+                intent.putExtra("content", mDbDao.queryData("").get(position));
+                startActivity(intent);
+
+            }
+        });
 
 
     }
@@ -324,4 +342,5 @@ public class SerachActivity extends BaseActivity implements View.OnClickListener
         });
 
     }
+
 }

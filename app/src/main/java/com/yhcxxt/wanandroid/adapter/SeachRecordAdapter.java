@@ -2,6 +2,7 @@ package com.yhcxxt.wanandroid.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yhcxxt.wanandroid.R;
@@ -22,6 +23,7 @@ public class SeachRecordAdapter extends BaseRecycleAdapter<String> {
     protected void bindData(BaseViewHolder holder, final int position) {
 
         TextView textView= (TextView) holder.getView(R.id.historyTv);
+        RelativeLayout rl = (RelativeLayout) holder.getView(R.id.rl);
         textView.setText(datas.get(position));
         
         //
@@ -33,6 +35,16 @@ public class SeachRecordAdapter extends BaseRecycleAdapter<String> {
                 }
             }
         });
+
+        holder.getView(R.id.rl).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null!=mItemOnclickListener){
+                    mItemOnclickListener.ItemOnclick(position);
+                }
+            }
+        });
+
     }
 
     @Override
