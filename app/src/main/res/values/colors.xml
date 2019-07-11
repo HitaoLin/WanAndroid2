@@ -118,4 +118,8 @@
     <color name="type_other">#00695C</color>
 
 
+    <color name="progress_bar_web_start">#f498af</color>
+    <color name="progress_bar_web_center">#ee3f5b</color>
+    <color name="progress_bar_web_end">#D81B60</color>
+
 </resources>

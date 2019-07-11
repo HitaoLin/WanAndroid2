@@ -19,10 +19,15 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <WebView
-    android:id="@+id/webview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    <com.yhcxxt.wanandroid.views.ProgressWebview
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--<WebView-->
+    <!--android:id="@+id/webview"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"/>-->
 
     <!--<com.yhcxxt.wanandroid.views.LoadWebView-->
     <!--android:id="@+id/webview"-->
