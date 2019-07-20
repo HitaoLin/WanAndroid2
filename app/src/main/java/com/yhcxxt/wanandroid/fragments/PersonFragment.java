@@ -1,7 +1,9 @@
 package com.yhcxxt.wanandroid.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,14 +19,24 @@ import com.wildma.pictureselector.ImageUtils;
 import com.wildma.pictureselector.PictureSelector;
 import com.yhcxxt.wanandroid.R;
 import com.yhcxxt.wanandroid.activity.AboutUsActivity;
+import com.yhcxxt.wanandroid.activity.CollectActivity;
 import com.yhcxxt.wanandroid.activity.LoginActivity;
 import com.yhcxxt.wanandroid.activity.MainActivity;
+import com.yhcxxt.wanandroid.activity.SplashActivity;
+import com.yhcxxt.wanandroid.activity.TodoActivity;
 import com.yhcxxt.wanandroid.activity.ToolActivity;
 import com.yhcxxt.wanandroid.config.ConfigValue;
 import com.yhcxxt.wanandroid.config.SPConfig;
+import com.yhcxxt.wanandroid.http.OkHttpClientManager;
+import com.yhcxxt.wanandroid.model.CollectModel;
+import com.yhcxxt.wanandroid.presenter.CollectPresenter;
 import com.yhcxxt.wanandroid.utils.SPUtils;
+import com.yhcxxt.wanandroid.utils.TypefacesUtil;
 import com.yhcxxt.wanandroid.utils.Utils;
+import com.yhcxxt.wanandroid.view.CollectView;
 import com.yhcxxt.wanandroid.views.CircleImageView;
+import com.yhcxxt.wanandroid.widget.Lead;
+import com.yhcxxt.wanandroid.widget.LeadTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +48,10 @@ import java.util.List;
  *      desc:我的 Fragment
  * </pre>
  */
-public class PersonFragment extends Fragment implements View.OnClickListener {
+public class PersonFragment extends Fragment implements View.OnClickListener, CollectView {
 
+    LeadTextView leadTv;
+    private static final int mDuration = 2000;
     private CircleImageView ivHeader;//头像
     private TextView tvName;//用户名
     private LinearLayout linearCollect;//收藏
@@ -49,6 +63,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     private LinearLayout linearLogOut;//退出登录
     private LinearLayout linear_about;//关于我们
     private LinearLayout linear_tool;//工具
+    private LinearLayout linear_todo;
 
     private List<String> collectList = new ArrayList<>();
     private String name;
@@ -57,6 +72,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
     private String flag;
     String path;
     int id;
+    private String cookie;
+
+    CollectPresenter collectPresenter;//判断登录状态
 
     View view;
 
@@ -82,8 +100,8 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
 
         //获取登录状态
-        flag = (String) SPUtils.get(this.getContext(), SPConfig.FLAG, "");
-        ConfigValue.Flag = (String) SPUtils.get(this.getContext(), SPConfig.FLAG, "");
+//        flag = (String) SPUtils.get(this.getContext(), SPConfig.FLAG, "");
+//        ConfigValue.Flag = (String) SPUtils.get(this.getContext(), SPConfig.FLAG, "");
 
         path = (String) SPUtils.get(this.getContext(), SPConfig.PICTUREPATH, "");
         ConfigValue.Picture_Path = (String) SPUtils.get(this.getContext(), SPConfig.PICTUREPATH, "");
@@ -91,7 +109,16 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         username = (String) SPUtils.get(this.getContext(), SPConfig.USERNAME, "");
         ConfigValue.User_Name = (String) SPUtils.get(this.getContext(), SPConfig.USERNAME, "");
 
-        initView();
+//        cookie = (String) SPUtils.get(this.getContext(), SPConfig.COOKIE, "");
+//        ConfigValue.Cookie = (String) SPUtils.get(this.getContext(), SPConfig.COOKIE, "");
+
+        cookie = OkHttpClientManager.getCooki();
+        Log.e("cookie",cookie);
+
+        collectPresenter = new CollectPresenter(this);
+        collectPresenter.loadCollect(this.getContext(), "0");
+
+//        initView();
 
 
 //
@@ -114,6 +141,7 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         linearLogOut = view.findViewById(R.id.linear_log_out);
         linear_about = view.findViewById(R.id.linear_about);
         linear_tool = view.findViewById(R.id.linear_tool);
+        linear_todo = view.findViewById(R.id.linear_todo);
 
         ivHeader.setOnClickListener(this);
         linearCollect.setOnClickListener(this);
@@ -126,7 +154,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
         linear_about.setOnClickListener(this);
         linear_tool.setOnClickListener(this);
         tvName.setOnClickListener(this);
+        linear_todo.setOnClickListener(this);
 
+//        if (cookie.equals("")||cookie.isEmpty()){
         if (flag.equals("1")) {
             tvName.setText(username);
             if (path.isEmpty()) {
@@ -146,13 +176,22 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
             ivHeader.setImageResource(R.mipmap.bg_person2);
         }
 
+        initLeadText();
+
+    }
+
+    private void initLeadText(){
+        leadTv = view.findViewById(R.id.leadTv);
+        leadTv.setTypeface(TypefacesUtil.get(this.getContext(),"Satisfy-Regular.ttf"));
+        final Lead lead = new Lead(mDuration);
+        lead.start(leadTv);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_header://头像
-
                 if (flag.equals("1")) {
 
                     /**
@@ -176,15 +215,24 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
                     startActivity(new Intent(this.getContext(), LoginActivity.class));
                 }
 
+//                if (cookie.equals("")||cookie.isEmpty()){
+//                    startActivity(new Intent(this.getContext(), LoginActivity.class));
+//                }
+
 
                 break;
 
             case R.id.linear_collect://收藏
-                if (flag.equals("1")) {
-                    Toast.makeText(this.getContext(), "敬请期待！", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this.getContext(), "请先登录！", Toast.LENGTH_SHORT).show();
-                }
+//                if (flag.equals("1")) {
+//                    Toast.makeText(this.getContext(), "敬请期待！", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this.getContext(), CollectActivity.class));
+//                } else {
+//                    Toast.makeText(this.getContext(), "请先登录！", Toast.LENGTH_SHORT).show();
+//                }
+                break;
+
+            case R.id.linear_todo:
+                startActivity(new Intent(this.getContext(), TodoActivity.class));
                 break;
 
             case R.id.linear_feedback://反馈建议
@@ -262,5 +310,22 @@ public class PersonFragment extends Fragment implements View.OnClickListener {
 
             }
         }
+    }
+
+    /**
+     * 判断登录状态
+     *
+     * @param model
+     */
+    @Override
+    public void getCollect(CollectModel model) {
+
+        if (model.getErrorCode().equals("0")) {
+            flag = "1";
+        } else {
+            flag = "0";
+        }
+
+        initView();
     }
 }

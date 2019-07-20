@@ -38,6 +38,7 @@ public class LoginPresenter extends BasePresenter {
         Map<String,String> params = getDefaultMD5Params("user","login");
         params.put("username", username);
         params.put("password",password);
+
         OkHttpClientManager.postAsyn(context, ConfigValue.APP_IP + "user/login",
                 params, new BaseDelegate.ResultCallback<LoginModel>() {
 
@@ -52,5 +53,6 @@ public class LoginPresenter extends BasePresenter {
                     }
 
                 },true);
+
     }
 }

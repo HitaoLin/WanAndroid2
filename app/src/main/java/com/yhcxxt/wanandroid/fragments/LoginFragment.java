@@ -1,11 +1,13 @@
 package com.yhcxxt.wanandroid.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.yhcxxt.wanandroid.activity.MainActivity;
 import com.yhcxxt.wanandroid.config.ConfigValue;
 import com.yhcxxt.wanandroid.config.SPConfig;
 import com.yhcxxt.wanandroid.dialog.MyDialog;
+import com.yhcxxt.wanandroid.http.OkHttpClientManager;
 import com.yhcxxt.wanandroid.model.LoginModel;
 import com.yhcxxt.wanandroid.presenter.LoginPresenter;
 import com.yhcxxt.wanandroid.utils.SPUtils;
@@ -50,7 +53,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     List<String> collectList = new ArrayList<>();
     String flag = "0";
 
-
+    String cookie;
 
     @Nullable
     @Override
@@ -127,6 +130,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
             SPUtils.put(this.getContext(), SPConfig.USERNAME, name);
             ConfigValue.User_Name = name;
+
 
             flag = "1";
             SPUtils.put(this.getContext(), SPConfig.FLAG, flag);

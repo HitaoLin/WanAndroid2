@@ -66,6 +66,45 @@
             android:layout_marginRight="@dimen/dp_10"/>
 
         <LinearLayout
+            android:id="@+id/linear_todo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_15"
+            android:background="@drawable/recycler_item_selector">
+
+            <ImageView
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
+                android:src="@mipmap/todo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_15"
+                android:text="Todo"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/line_color"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:visibility="gone"/>
+
+        <LinearLayout
             android:id="@+id/linear_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -314,7 +353,17 @@
             android:layout_height="@dimen/dp_1"
             android:background="@color/line_color"
             android:layout_marginLeft="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_10"/>
+            android:layout_marginRight="@dimen/dp_10" />
+
+        <com.yhcxxt.wanandroid.widget.LeadTextView
+            android:id="@+id/leadTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/wks_bg"
+            android:textSize="@dimen/sp_30"
+            android:padding="@dimen/dp_15"
+            android:gravity="center"/>
 
     </LinearLayout>
 

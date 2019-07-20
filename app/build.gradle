@@ -74,5 +74,11 @@ dependencies {
     // 支持 WebP （静态图+动图），需要添加
     implementation 'com.facebook.fresco:animated-webp:1.11.0'
     implementation 'com.facebook.fresco:webpsupport:1.11.0'
+    //FlycoTabLayout
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar'
+    //stickyDecoration
+    implementation 'com.gavin.com.library:stickyDecoration:1.5.0'
 
 }

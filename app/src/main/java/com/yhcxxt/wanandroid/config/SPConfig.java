@@ -11,6 +11,8 @@ package com.yhcxxt.wanandroid.config;
  */
 public interface SPConfig {
 
+    //Cookie
+    public static final String COOKIE = "cookie";
     //图片地址
     public static final String PICTUREPATH = "picturePath";
     //用户名
@@ -20,5 +22,6 @@ public interface SPConfig {
     //登录状态
     public static final String FLAG = "0";
 
+    public static final String TEMP = "temp";
 
 }

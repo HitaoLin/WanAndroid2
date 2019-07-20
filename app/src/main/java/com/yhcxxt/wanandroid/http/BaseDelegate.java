@@ -71,8 +71,10 @@ public class BaseDelegate {
 		if (callback == null)
 			callback = DEFAULT_RESULT_CALLBACK;
 		final ResultCallback resCallBack = callback;
+
 		// UI thread
 		callback.onBefore(request);
+
 		mOkHttpClient.newCall(request).enqueue(new Callback() {
 			@Override
 			public void onFailure(Call call, IOException e) {

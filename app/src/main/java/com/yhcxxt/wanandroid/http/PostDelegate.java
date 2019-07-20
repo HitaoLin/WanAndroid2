@@ -1,8 +1,11 @@
 package com.yhcxxt.wanandroid.http;
 
 import android.content.Context;
+import android.util.Log;
 
 
+import com.yhcxxt.wanandroid.config.SPConfig;
+import com.yhcxxt.wanandroid.utils.SPUtils;
 import com.yhcxxt.wanandroid.utils.Utils;
 
 import java.io.IOException;
@@ -94,6 +97,7 @@ public class PostDelegate extends BaseDelegate {
         Request.Builder reqBuilder = null;
         if (forceNetWork) {// 强制走网络 对于特殊请求
             reqBuilder = new Request.Builder().cacheControl(CacheControl.FORCE_NETWORK).url(url);
+
         } else if (Utils.isNetworkAvailable(context) == 0) {// 没有网络则强制请求缓存中数据
             reqBuilder = new Request.Builder().cacheControl(CacheControl.FORCE_CACHE).url(url);
         } else {// 否则走网络
@@ -107,6 +111,11 @@ public class PostDelegate extends BaseDelegate {
         if (tag != null) {
             reqBuilder.tag(tag);
         }
+      String cookie= (String) SPUtils.get(context, SPConfig.COOKIE,"");
+
+        if (!cookie.isEmpty())
+            reqBuilder.addHeader("Cookie",cookie.replace(" ",""));
+        Log.e("TAG2",cookie);
         return reqBuilder.build();
 
     }

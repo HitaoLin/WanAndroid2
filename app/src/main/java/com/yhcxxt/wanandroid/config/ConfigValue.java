@@ -4,6 +4,8 @@ public class ConfigValue {
 
     public static final String APP_IP = "https://www.wanandroid.com/";
     public static final String ARTICLE_IP = "https://www.wanandroid.com/article/list/";
+    //Cookie
+    public static String Cookie = "";
     //图片地址
     public static String Picture_Path = "";
     //用户名

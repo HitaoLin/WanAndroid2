@@ -58,7 +58,10 @@
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AboutUsActivity"></activity>
+        <activity android:name=".activity.RecordActivity"></activity>
+        <activity android:name=".activity.TodoActivity" />
+        <activity android:name=".activity.CollectActivity" />
+        <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.EveryToolActivity" />
         <activity android:name=".activity.ToolActivity" />
         <activity android:name=".activity.LoginActivity" />

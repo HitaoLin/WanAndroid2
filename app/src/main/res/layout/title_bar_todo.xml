@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_45"
+    android:background="@color/wks_bg">
+    <!--android:background="#FFFF2441"-->
+    <LinearLayout
+        android:id="@+id/linear_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/dp_8">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_back" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18" />
+
+    <LinearLayout
+        android:id="@+id/ll_record"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_45"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:background="@mipmap/ic_record" />
+
+    </LinearLayout>
+
+</RelativeLayout>

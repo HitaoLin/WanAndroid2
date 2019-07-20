@@ -3,6 +3,13 @@ package com.yhcxxt.wanandroid.http;
 import android.content.Context;
 import android.util.Log;
 
+import com.yhcxxt.wanandroid.config.ConfigValue;
+import com.yhcxxt.wanandroid.config.SPConfig;
+import com.yhcxxt.wanandroid.utils.SPUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +33,9 @@ public class OkHttpClientManager {
     private OkHttpClient mOkHttpClient;
     private PostDelegate mPostDelegate = null;
     private GetDelegate mGetDelegate = null;
+    private static String cooki;
+    List<Cookie> cookies;
+
     public class HttpLogger implements HttpLoggingInterceptor.Logger {
         @Override
         public void log(String message) {
@@ -43,8 +53,14 @@ public class OkHttpClientManager {
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLogger());
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         builder.addNetworkInterceptor(logInterceptor);
+
+
+       /* cooki = (String) SPUtils.get(context, SPConfig.COOKIE, "");
+        ConfigValue.Cookie = (String) SPUtils.get(context, SPConfig.COOKIE, "");*/
+
         mOkHttpClient = builder
                 .cookieJar(new CookieJar() {
+
                     private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
 
                     //                    @Override
@@ -54,15 +70,28 @@ public class OkHttpClientManager {
                     @Override
                     public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
                         cookieStore.put(url.host(), cookies);
+
                     }
 
                     @Override
                     public List<Cookie> loadForRequest(HttpUrl url) {
-                        List<Cookie> cookies = cookieStore.get(url.host());
-                        return cookies != null ? cookies : new ArrayList<Cookie>();
+                        List<Cookie> cookies=cookieStore.get(url.host());
+//                        return cookies != null ? cookies : new ArrayList<Cookie>();
+                        if (cookies != null) {
+                            cooki = cookies.get(0).toString();
+                            String cookie = cooki.substring(0, cooki.indexOf(";"));
+                            setCooki(cookie);
+                            return cookies;
+                        } else {
+                            cookies = new ArrayList<Cookie>();
+                            return cookies;
+                        }
+
                     }
+
                 })
                 .build();
+
         mPostDelegate = new PostDelegate(mOkHttpClient);
         mGetDelegate = new GetDelegate(mOkHttpClient);
 
@@ -77,6 +106,14 @@ public class OkHttpClientManager {
 //            }
 //        });
 
+    }
+
+    public static String getCooki() {
+        return cooki;
+    }
+
+    public static void setCooki(String cooki) {
+        cooki = cooki;
     }
 
     public static OkHttpClientManager getInstance(Context context) {

@@ -411,4 +411,32 @@ public class HomeFragment extends Fragment implements BannerView, OnBannerListen
         startActivity(intent, options.toBundle());
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+//        bannerPresenter.loadBanner(this.getContext());
+
+        initEvent();
+        initRecyclerView();
+        initRefreshLayout();
+
+//        refreshLayout.autoRefresh();
+
+        if (articleDatas.size() >= 0) {
+
+            linkList.clear();
+            titleList.clear();
+
+            articleDatas.clear();
+
+            rvHomeAdapter.clearData();
+
+        }
+
+        articlePresenter.loadArticle(this.getContext(), String.valueOf(page));
+
+        initTitleEvent();
+
+    }
 }

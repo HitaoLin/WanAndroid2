@@ -7,6 +7,12 @@
     <string name="cart">项目</string>
     <string name="mine">我的</string>
 
+    //Todo
+    <string name="todo">待办清单</string>
+    <string name="finish">完成清单</string>
+    <string name="title">输入待办事件名称，如：开会</string>
+    <string name="content">输入待办详情，非必填，如：\n1、制作演示PPT\n2、预定会议室\n3、通知参加会议人员\n4、提前10分钟准备会议环境\n\n</string>
+
     //search
     <string name="search">搜索</string>
     <string name="share_edit">shareEdit</string>
