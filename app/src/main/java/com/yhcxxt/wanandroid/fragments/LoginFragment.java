@@ -24,6 +24,8 @@ import com.yhcxxt.wanandroid.dialog.MyDialog;
 import com.yhcxxt.wanandroid.http.OkHttpClientManager;
 import com.yhcxxt.wanandroid.model.LoginModel;
 import com.yhcxxt.wanandroid.presenter.LoginPresenter;
+import com.yhcxxt.wanandroid.utils.ActivityManager;
+import com.yhcxxt.wanandroid.utils.ActivityManagerUtils;
 import com.yhcxxt.wanandroid.utils.SPUtils;
 import com.yhcxxt.wanandroid.view.LoginView;
 
@@ -137,6 +139,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
             ConfigValue.Flag = flag;
 
             startActivity(intent);
+
 
         }else {
             Toast.makeText(this.getContext(), model.getErrorMsg(), Toast.LENGTH_SHORT).show();

@@ -3,7 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_45"
-    android:background="@color/wks_bg">
+    android:background="@color/progress_bar_web_start">
     <!--android:background="#FFFF2441"-->
     <LinearLayout
         android:id="@+id/linear_back"

@@ -124,4 +124,10 @@
     <color name="progress_bar_web_center">#ee3f5b</color>
     <color name="progress_bar_web_end">#D81B60</color>
 
+    <color name="bg1">#42CFBE</color>
+    <color name="bg2">#57B1CC</color>
+    <color name="bg3">#B888E5</color>
+    <color name="bg4">#F695A8</color>
+    <color name="bg5">#F9D461</color>
+
 </resources>

@@ -1,6 +1,8 @@
 package com.yhcxxt.wanandroid.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yhcxxt.wanandroid.R;
-import com.yhcxxt.wanandroid.model.AddTodoModel;
-import com.yhcxxt.wanandroid.presenter.AddTodoPresenter;
 import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 import com.yhcxxt.wanandroid.utils.Utils;
-import com.yhcxxt.wanandroid.view.AddTodoView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,11 +29,11 @@ import butterknife.OnClick;
 /**
  * <pre>
  *     author:LHT
- *     date:20190719
- *     desc:记录  Activity
+ *     date:20190724
+ *     desc:更新Todo  Activity
  * </pre>
  */
-public class RecordActivity extends BaseActivity implements View.OnClickListener, AddTodoView {
+public class RecordUpdateActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.et_title)
     EditText etTitle;
@@ -66,8 +65,8 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
     private String content;
     private String time;
     private String type;
+    private String id;
 
-    AddTodoPresenter addTodoPresenter;
 
     private int mColor;
 
@@ -88,12 +87,17 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_record);
         ButterKnife.bind(this);
 
-        addTodoPresenter = new AddTodoPresenter(this);
+        rbStudy = findViewById(R.id.rb_study);
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
+        time = intent.getStringExtra("time");
+        content = intent.getStringExtra("content");
+        id = intent.getStringExtra("id");
+        type = intent.getStringExtra("type");
 
-        type = "0";
 
         initView();
-        initTime();
+        initData();
         initRadioGroup();
 
     }
@@ -125,13 +129,11 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    private void initTime() {
+    private void initData() {
 
-        //获取当前时间
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date curDate = new Date(System.currentTimeMillis());
-        String currentTime = simpleDateFormat.format(curDate);
-        tvTime.setText("" + currentTime);
+        tvTime.setText("" + time);
+        etTitle.setText("" + title);
+        etContent.setText("" + content);
 
     }
 
@@ -141,8 +143,19 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
         tv_title = findViewById(R.id.tv_title);
 
         linear_back.setOnClickListener(this);
-        tv_title.setText("新增");
+        tv_title.setText("编辑");
 
+        rg.clearCheck();
+
+        if (type.equals("0") ){
+            rbStudy.setChecked(true);
+        }else if (type.equals("1")){
+            rbLife.setChecked(true);
+        }else if (type.equals("2")){
+            rbWork.setChecked(true);
+        }else if (type.equals("3")){
+            rbOther.setChecked(true);
+        }
 
     }
 
@@ -200,26 +213,10 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
                     Utils.showToast(this, "请输入待办事件名称！");
                 }
 
-                addTodoPresenter.loadArticle(this, title, content, time, type);
+//                addTodoPresenter.loadArticle(this, title, content, time, type);
 
                 break;
         }
     }
 
-    /**
-     * 新增Todo
-     *
-     * @param model
-     */
-    @Override
-    public void getAddTodo(AddTodoModel model) {
-        if (model.getErrorCode().equals("0")) {
-
-            Utils.showToast(this, "保存成功");
-            finish();
-
-        } else {
-            Utils.showToast(this, model.getErrorMsg());
-        }
-    }
 }

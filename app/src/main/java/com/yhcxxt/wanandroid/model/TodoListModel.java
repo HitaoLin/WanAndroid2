@@ -10,13 +10,13 @@ package com.yhcxxt.wanandroid.model;
  */
 public class TodoListModel extends BaseModel{
 
-    private ArticleData data;
+    private TodoListData data;
 
-    public ArticleData getData() {
+    public TodoListData getData() {
         return data;
     }
 
-    public void setData(ArticleData data) {
+    public void setData(TodoListData data) {
         this.data = data;
     }
 }

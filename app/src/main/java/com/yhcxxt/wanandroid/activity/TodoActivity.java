@@ -17,7 +17,10 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.yhcxxt.wanandroid.R;
 import com.yhcxxt.wanandroid.entity.TabEntity;
 import com.yhcxxt.wanandroid.fragments.LifeFragment;
+import com.yhcxxt.wanandroid.fragments.OtherFragment;
 import com.yhcxxt.wanandroid.fragments.StudyFragment;
+import com.yhcxxt.wanandroid.fragments.StudyFragment2;
+import com.yhcxxt.wanandroid.fragments.WorkFragment;
 import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 import com.yhcxxt.wanandroid.utils.ViewFindUtils;
 
@@ -56,7 +59,7 @@ public class TodoActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void setStatusBar() {
-        mColor = getResources().getColor(R.color.wks_bg);
+        mColor = getResources().getColor(R.color.progress_bar_web_start);
         StatusBarUtil.setColor(this, mColor, 0);
         if (mColor == getResources().getColor(R.color.white)) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//黑色
@@ -97,10 +100,10 @@ public class TodoActivity extends BaseActivity implements View.OnClickListener {
 //        for (String title : mTitles) {
 //            mFragments.add(SimpleCardFragment.getInstance("Switch ViewPager " + title));
 //        }
-        mFragments.add(StudyFragment.getInstance("Switch ViewPager "));
-        mFragments.add(LifeFragment.getInstance("Switch ViewPager "));
-        mFragments.add(StudyFragment.getInstance("Switch ViewPager "));
-        mFragments.add(LifeFragment.getInstance("Switch ViewPager "));
+        mFragments.add(StudyFragment2.getInstance("Switch ViewPager "));
+//        mFragments.add(LifeFragment.getInstance("Switch ViewPager "));
+//        mFragments.add(WorkFragment.getInstance("Switch ViewPager "));
+//        mFragments.add(OtherFragment.getInstance("Switch ViewPager "));
 
 
         for (int i = 0; i < mTitles.length; i++) {

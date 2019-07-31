@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".activity.RecordActivity">
 
-    <include layout="@layout/title_bar"/>
+    <include layout="@layout/title_bar_record"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -64,35 +64,44 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/dp_10">
-                
+
+
                 <RadioButton
                     android:id="@+id/rb_study"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="学习"
-                    android:checked="true"/>
+                    android:checked="true"
+                    android:buttonTint="@color/progress_bar_web_start"
+                    android:textColor="@color/progress_bar_web_start" />
 
                 <RadioButton
                     android:id="@+id/rb_life"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="生活"/>
+                    android:text="生活"
+                    android:buttonTint="@color/progress_bar_web_start"
+                    android:textColor="@color/progress_bar_web_start"/>
 
                 <RadioButton
                     android:id="@+id/rb_work"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="工作"/>
+                    android:text="工作"
+                    android:buttonTint="@color/progress_bar_web_start"
+                    android:textColor="@color/progress_bar_web_start"/>
 
                 <RadioButton
                     android:id="@+id/rb_other"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="其他"/>
+                    android:text="其他"
+                    android:buttonTint="@color/progress_bar_web_start"
+                    android:textColor="@color/progress_bar_web_start"/>
 
 
             </RadioGroup>
@@ -107,7 +116,7 @@
                     android:id="@+id/iv_clock"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="@dimen/dp_30"
-                    android:background="@mipmap/clock"
+                    android:background="@mipmap/time_add"
                     android:layout_centerVertical="true"
                     android:layout_margin="@dimen/dp_10"/>
 
@@ -128,7 +137,7 @@
                 android:id="@+id/bt_conserve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/buttonstudyle"
+                android:background="@drawable/buttonstudyle_record"
                 android:layout_margin="@dimen/dp_10"
                 android:text="保存"
                 android:textColor="@color/white"

@@ -24,6 +24,8 @@ import com.yhcxxt.wanandroid.activity.LoginActivity;
 import com.yhcxxt.wanandroid.activity.MainActivity;
 import com.yhcxxt.wanandroid.activity.SplashActivity;
 import com.yhcxxt.wanandroid.activity.TodoActivity;
+import com.yhcxxt.wanandroid.activity.TodoActivity2;
+import com.yhcxxt.wanandroid.activity.TodoActivity3;
 import com.yhcxxt.wanandroid.activity.ToolActivity;
 import com.yhcxxt.wanandroid.config.ConfigValue;
 import com.yhcxxt.wanandroid.config.SPConfig;
@@ -232,7 +234,9 @@ public class PersonFragment extends Fragment implements View.OnClickListener, Co
                 break;
 
             case R.id.linear_todo:
-                startActivity(new Intent(this.getContext(), TodoActivity.class));
+//                startActivity(new Intent(this.getContext(), TodoActivity.class));
+//                startActivity(new Intent(this.getContext(), TodoActivity2.class));
+                startActivity(new Intent(this.getContext(), TodoActivity3.class));
                 break;
 
             case R.id.linear_feedback://反馈建议

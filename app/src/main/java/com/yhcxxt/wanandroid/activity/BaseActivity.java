@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.yhcxxt.wanandroid.utils.ActivityManager;
 import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 
 
@@ -39,6 +40,15 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ActivityManager.getActivityManager().pushActivity(this);
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ActivityManager.getActivityManager().popActivity(this);
+    }
 }

@@ -20,6 +20,7 @@ import com.yhcxxt.wanandroid.fragments.ProjectFragment4;
 import com.yhcxxt.wanandroid.fragments.SystemFragment;
 import com.yhcxxt.wanandroid.fragments.SystemFragment2;
 import com.yhcxxt.wanandroid.fragments.WechartFragment;
+import com.yhcxxt.wanandroid.utils.ActivityManager;
 import com.yhcxxt.wanandroid.utils.StatusBarUtil;
 import com.yhcxxt.wanandroid.widget.FragmentTabHost;
 
@@ -50,6 +51,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActivityManager.getActivityManager().popAllActivityExceptOne(MainActivity.class);
+
         initTab();
 
     }

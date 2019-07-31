@@ -27,7 +27,8 @@
         android:maxLines="1"
         android:padding="@dimen/dp_10"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:text="linhaitao"/>
     <!--   android:text="linhaitao"-->
 
     <EditText
@@ -44,7 +45,8 @@
         android:maxLines="1"
         android:padding="@dimen/dp_10"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/white"
+        android:text="12345678"/>
     <!--android:text="12345678"-->
 
     <TextView
