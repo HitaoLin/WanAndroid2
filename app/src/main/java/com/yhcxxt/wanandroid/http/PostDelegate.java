@@ -61,37 +61,7 @@ public class PostDelegate extends BaseDelegate {
 
         RequestBody body = builder.build();
 
-        //demo
-//		Request request = new Request.Builder()
-//				.url("http://jifen.xianhua.cn/testpost")
-//				.post(body)
-//				.build();
-//
-//		return request;
 
-//		if (params == null) {
-//			params = new HashMap<String, String>();
-//		}
-//		//old
-////		FormEncodingBuilder builder = null;
-////		if (params.size() > 0) {
-////			builder = new FormEncodingBuilder();
-////		}
-////		Set<Map.Entry<String, String>> entries = params.entrySet();
-////		for (Map.Entry<String, String> entry : entries) {
-////			builder.add(entry.getKey(), entry.getValue());
-////		}
-//		//old
-//		//new
-//		FormBody builder = null;
-//		Set<Map.Entry<String, String>> entries = params.entrySet();
-//		for (Map.Entry<String, String> entry : entries) {
-//			if (params.size() > 0) {
-//				builder = new FormBody.Builder()
-//						.add(entry.getKey(), entry.getValue())
-//						.build();
-//			}
-//		}
 //		//new
 
         Request.Builder reqBuilder = null;

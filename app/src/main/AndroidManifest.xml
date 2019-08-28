@@ -37,7 +37,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.REQUEST_INSTALL_PACKAGES.GET_TASKS" /> <!-- Required -->
     <!-- <permission -->
-    <!-- android:name="com.wemallcn.onlineshopping.permission.JPUSH_MESSAGE" -->
     <!-- android:protectionLevel="signature" /> -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />

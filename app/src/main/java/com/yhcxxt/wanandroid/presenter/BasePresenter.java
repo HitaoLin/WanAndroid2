@@ -18,7 +18,7 @@ import java.util.Map;
 public class BasePresenter {
 
     protected ProgressDialog mLoadingDialog;
-    private static final String densityKey = "wemall";
+    private static final String densityKey = "";
 
     protected  void initLoadDialog(Context context){
 
