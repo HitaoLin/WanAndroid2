@@ -27,6 +27,9 @@ import com.yhcxxt.wanandroid.widget.FragmentTabHost;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class MainActivity extends BaseActivity {
 
     private FragmentTabHost mTabhost;
