@@ -19,15 +19,15 @@
 
 <h3>APP部分页面：</h3>
 
-<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/welcome.png" alt="欢迎页面" title=""width="140" height="250" /></p>
+<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/welcome.png" alt="欢迎页面" title="欢迎页面"width="140" height="250" />
 
-<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/system.png" alt="知识体系" title=""width="140" height="250" /></p>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/system.png" alt="知识体系" title="知识体系"width="140" height="250" />
 
-<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/wechat.png" alt="公众号" title="" width="140" height="250"/></p>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/wechat.png" alt="公众号" title="公众号" width="140" height="250"/>
 
-<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/project.png" alt="项目" title="" /></p>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/project.png" alt="项目" title="项目" width="140" height="250"  />
 
-<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/me.png" alt="我的" title=""width="140" height="250" />  </p>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/me.png" alt="我的" title="我的"width="140" height="250" />  </p>
 
 
 
