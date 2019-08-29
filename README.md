@@ -29,8 +29,8 @@
 我的
 <img src="https://github.com/HitaoLin/WanAndroid2/blob/master/me.png" alt="我的" title="我的"width="140" height="250" />  </p>
 
-
-
+<h3>交流群：</h3>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/qun.png" alt="交流群" title="交流群"width="300" height="300" />  </p>
 <h3>特别感谢</h3>
 
 <p>1.鸿洋大神的开发api  </p>
