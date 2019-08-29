@@ -6,32 +6,36 @@
   1.本项目一开始是作为我的一个新手入手项目，所以很适合刚入门的小白。  
   2.该项目涉及到的都是比较常用的控件和一些使用简单的第三方开源框架。  
 
-###使用的开源技术  
-整体：MVP+OkHttp3+Glide  
-1.Banner  
-2.SmartRefresh  
-3.Gson  
-4.ButterKnife  
-5.FlowLayout  
-6.Glide
+ <h3>使用的开源技术</h3>
+</blockquote>
 
+<p>整体：MVP+OkHttp3+Glide <br>
+1.Banner <br>
+2.SmartRefresh <br>
+3.Gson <br>
+4.ButterKnife <br>
+5.FlowLayout <br>
+6.Glide</p>
 
+<h3>APP部分页面：</h3>
+欢迎页面
+<p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/welcome.png" alt="欢迎页面" title="欢迎页面"width="140" height="250" /></p>
+知识体系
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/system.png" alt="知识体系" title="知识体系"width="140" height="250" /></p>
+公众号
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/wechat.png" alt="公众号" title="公众号" width="140" height="250"/></p>
+项目
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/project.png" alt="项目" title="项目" width="140" height="250"  /></p>
+我的
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/me.png" alt="我的" title="我的"width="140" height="250" />  </p>
 
-APP部分页面：
+<h3>交流群：</h3>
+<img src="https://github.com/HitaoLin/WanAndroid2/blob/master/qun.png" alt="交流群" title="交流群"width="300" height="300" />  </p>
+<h3>特别感谢</h3>
 
-  <p><img src="https://github.com/HitaoLin/WanAndroid2/blob/master/welcome.png" alt="欢迎页面" title="" width="1024" />  </p>
+<p>1.鸿洋大神的开发api  </p>
 
-![欢迎页面](https://github.com/HitaoLin/WanAndroid2/blob/master/welcome.png)
+<h3>致谢</h3>
 
-![知识体系](https://github.com/HitaoLin/WanAndroid2/blob/master/system.png)
+<p>如果您觉得我的此项目对您有些帮助,您的star就是对我最大的鼓励!</p>
 
-![公众号](https://github.com/HitaoLin/WanAndroid2/blob/master/wechat.png)
-
-![项目](https://github.com/HitaoLin/WanAndroid2/blob/master/project.png)
-
-![我的](https://github.com/HitaoLin/WanAndroid2/blob/master/me.png)    
-
-###特别感谢  
-1.鸿洋大神的开发api  
-###致谢  
-如果您觉得我的此项目对您有些帮助,您的star就是对我最大的鼓励!
