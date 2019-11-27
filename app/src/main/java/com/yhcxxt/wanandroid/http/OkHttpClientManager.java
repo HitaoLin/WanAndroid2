@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.Call;
@@ -48,7 +49,8 @@ public class OkHttpClientManager {
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
         Cache cache = new Cache(context.getCacheDir(), cacheSize);
 //        mOkHttpClient.setCache(cache);
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(5000, TimeUnit.MILLISECONDS).readTimeout(1000,TimeUnit.MILLISECONDS);
         builder.cache(cache);
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLogger());
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
